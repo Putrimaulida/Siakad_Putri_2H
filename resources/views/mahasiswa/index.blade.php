@@ -9,9 +9,13 @@
             <div class="float-right my-2">
                 <a class="btn btn-success" href="{{ route('mahasiswa.create') }}"> Input Mahasiswa</a>
             </div>
+            <form action="{{ route('search') }}" method="GET">
+                <input type="text" name="search" placeholder="Cari Mahasiswa">
+                <input type="submit" value="Search">
+            </form>
         </div>
     </div>
- 
+    
  @if ($message = Session::get('success')) 
     <div class="alert alert-success">
         <p>{{ $message }}</p>
@@ -29,6 +33,9 @@
     <th>Nama</th>
     <th>Kelas</th>
     <th>Jurusan</th>
+    <th>E-Mail</th>
+    <th>Alamat</th>
+    <th>Tanggal_Lahir</th>
     <th width="280px">Action</th>
  </tr>
  @foreach ($mahasiswa as $mhs) 
@@ -38,6 +45,9 @@
     <td>{{ $mhs ->nama }}</td>
     <td>{{ $mhs ->kelas }}</td>
     <td>{{ $mhs ->jurusan }}</td>
+    <td>{{ $mhs ->email }}</td>
+    <td>{{ $mhs ->alamat }}</td>
+    <td>{{ $mhs ->tanggal_lahir}}</td>
     <td>
     <form action="{{ route('mahasiswa.destroy',['mahasiswa'=>$mhs->nim]) }}" method="POST">
  
@@ -47,8 +57,16 @@
         @method('DELETE') 
         <button type="submit" class="btn btn-danger">Delete</button>
     </form>
+    
  </td>
  </tr>
  @endforeach 
  </table>
+ <br> 
+ Halaman : {{ $mahasiswa->currentPage() }}</br>
+ Jumlah Data : {{ $mahasiswa->total() }}</br>
+ Data Per Halaman : {{ $mahasiswa->perPage() }}</br>
+</br>
+{{ $mahasiswa->links() }}
+
 @endsection
