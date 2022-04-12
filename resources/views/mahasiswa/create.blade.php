@@ -50,6 +50,7 @@
                     <label for="Tanggal_Lahir">Tanggal Lahir</label> 
                     <input type="Tanggal_Lahir" name="Tanggal_Lahir" class="form-control" id="Tanggal_Lahir" aria-describedby="Tanggal_Lahir" > 
                 </div>
+
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
