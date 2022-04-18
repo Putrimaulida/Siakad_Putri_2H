@@ -33,29 +33,26 @@
     <th>Nama</th>
     <th>Kelas</th>
     <th>Jurusan</th>
-    <th>Email</th>
-    <th>Alamat</th>
-    <th>Tanggal Lahir</th>
+    <th>Foto</th>
     <th width="280px">Action</th>
  </tr>
- @foreach ($paginate as $mhs) 
- <tr>
- 
-    <td>{{ $mhs ->nim }}</td>
-    <td>{{ $mhs ->nama }}</td>
-    <td>{{ $mhs ->kelas->nama_kelas }}</td>
-    <td>{{ $mhs ->jurusan }}</td>
-    <td>{{ $mhs ->email }}</td>
-    <td>{{ $mhs ->alamat }}</td>
-    <td>{{ $mhs ->tanggal_lahir }}</td>
+ @foreach ($paginate as $Mahasiswa)
+    <tr>
+  
+    <td>{{ $Mahasiswa->Nim }}</td>
+    <td>{{ $Mahasiswa->Nama }}</td>
+    <td>{{ $Mahasiswa->kelas->nama_kelas }}</td>
+    <td>{{ $Mahasiswa->Jurusan }}</td>
+    <td><img width="100px" height="100px" src="{{ asset('storage/' . $Mahasiswa->Foto) }}"></td>
     <td>
-    <form action="{{ route('mahasiswa.destroy',['mahasiswa'=>$mhs->nim]) }}" method="POST">
- 
-        <a class="btn btn-info" href="{{ route('mahasiswa.show',$mhs->nim) }}">Show</a>
-        <a class="btn btn-primary" href="{{ route('mahasiswa.edit',$mhs->nim) }}">Edit</a>
-        @csrf 
-        @method('DELETE') 
-        <button type="submit" class="btn btn-danger">Delete</button>
+    <form action="{{ route('mahasiswa.destroy',$Mahasiswa->Nim) }}" method="POST">
+  
+    <a class="btn btn-info" href="{{ route('mahasiswa.show',$Mahasiswa->Nim) }}">Show</a>
+    <a class="btn btn-primary" href="{{ route('mahasiswa.edit',$Mahasiswa->Nim) }}">Edit</a>
+    <a class="btn btn-warning" href="{{route('nilai',$Mahasiswa->Nim) }}"> Nilai</a>
+    @csrf
+    @method('DELETE')      
+    <button type="submit" class="btn btn-danger">Delete</button>
     </form>
     </td>
     </tr>
